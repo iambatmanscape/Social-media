@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: monospace, roboto, sans-serif;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem;
+
+}
+
+ul {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    gap: 1rem;
+    padding: 0rem;
+}
+
+form.form {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    width: fit-content;
+    height: fit-content;
+    padding: 1rem 1rem;
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 1rem;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.image-container {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.auth-input {
+    height: 40px;
+    width: 300px;
+    padding-left: 5px;
+}
+
+.btn {
+    height: fit-content;
+    min-height: 40px;
+    min-width: 300px;
+    max-height: fit-content;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+
+.btn-primary {
+    background-color: darkblue;
+    color: white;
+    font-weight: 500;
+}
+
+nav.navbar {
+    padding: 1rem;
+}
+
+.cpost-div {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1rem;
+    resize: none;
+    margin-bottom: 1rem;
+}
+
+.cpost-div textarea {
+    padding: 1rem;
+    resize: none;
+}
+
+.cpost-div input {
+    padding: 0.5rem 1rem;
+}
+
+section.home-page {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.comment-in {
+    width: 100%;
+    padding: 0.5rem 1rem;
+}
+
+.comment-box {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+ul.comment-list {
+    display: block;
+    list-style-type: none;
+}
+
+li.comment {
+    margin-left: auto;
+    margin-right: auto;
+    height: fit-content;
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+    padding: 0.5rem;
+    border: 1px solid black;
+    margin-top: 1rem;
+}
