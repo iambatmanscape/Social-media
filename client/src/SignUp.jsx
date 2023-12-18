@@ -7,7 +7,7 @@ export default function SignUp() {
     const [mail, setMail] = useState('');
     const [pass, setPass] = useState('');
     async function SUp() {
-        const url = 'https://social-media-khaki.vercel.app/signup';
+        const url = 'https://social-backend-dft5.onrender.com/signup';
         const obj = {
             username: name,
             email: mail,

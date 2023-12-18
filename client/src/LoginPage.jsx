@@ -9,7 +9,7 @@ export default function Login() {
     const { account, setAccount } = useContext(DataContext);
     const navigate = useNavigate()
     async function onLogin() {
-        const url = 'https://social-media-khaki.vercel.app/login';
+        const url = 'https://social-backend-dft5.onrender.com/login';
         const credentials = {
             username: username,
             password: password,

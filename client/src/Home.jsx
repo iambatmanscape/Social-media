@@ -11,7 +11,7 @@ export default function Home() {
     const { account, setAccount } = useContext(DataContext);
     const navigate = useNavigate()
     const [posts, setPost] = useState(null);
-    const url = 'https://social-media-khaki.vercel.app/posts/create';
+    const url = 'https://social-backend-dft5.onrender.com/posts/create';
     async function getPost() {
         try {
             const response = await fetch('https://social-media-khaki.vercel.app/posts')
