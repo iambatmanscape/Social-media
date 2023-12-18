@@ -7,7 +7,7 @@ export default function SignUp() {
     const [mail, setMail] = useState('');
     const [pass, setPass] = useState('');
     async function SUp() {
-        const url = 'http://localhost:3000/signup';
+        const url = 'https://social-media-khaki.vercel.app/signup';
         const obj = {
             username: name,
             email: mail,

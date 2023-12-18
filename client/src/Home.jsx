@@ -11,10 +11,10 @@ export default function Home() {
     const { account, setAccount } = useContext(DataContext);
     const navigate = useNavigate()
     const [posts, setPost] = useState(null);
-    const url = 'http://localhost:3000/posts/create';
+    const url = 'https://social-media-khaki.vercel.app/posts/create';
     async function getPost() {
         try {
-            const response = await fetch('http://localhost:3000/posts')
+            const response = await fetch('https://social-media-khaki.vercel.app/posts')
             const data = await response.json();
             if (data) {
                 setPost(data);

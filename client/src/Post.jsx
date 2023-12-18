@@ -9,7 +9,7 @@ function Post({ title, author, content, lno, cno, id, remove, updateLikes, comme
     const [likes, setLikes] = useState(lno)
     const { account } = useContext(DataContext);
     async function likePost(id) {
-        const likeURL = 'http://localhost:3000/posts/like';
+        const likeURL = 'https://social-media-khaki.vercel.app/posts/like';
         const options = {
             method: "POST",
             headers: {
@@ -31,7 +31,7 @@ function Post({ title, author, content, lno, cno, id, remove, updateLikes, comme
 
     }
     async function deletePost(id) {
-        const deleteURL = 'http://localhost:3000/posts/delete';
+        const deleteURL = 'https://social-media-khaki.vercel.app/posts/delete';
         const options = {
             method: "DELETE",
             headers: {
@@ -57,7 +57,7 @@ function Post({ title, author, content, lno, cno, id, remove, updateLikes, comme
             author: account,
             text: comment,
         }
-        const commentURL = 'http://localhost:3000/posts/comments';
+        const commentURL = 'https://social-media-khaki.vercel.app//posts/comments';
         const options = {
             method: "POST",
             headers: {

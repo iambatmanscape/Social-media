@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import prof from './assets/img_avatar2.jpg'
 export default function PasswordChange() {
-    const url = 'http://localhost:3000/login/change';
+    const url = 'https://social-media-khaki.vercel.app//login/change';
     const navigate = useNavigate();
     const [username, setUsername] = useState('')
     const [newPassword, setNewPassword] = useState('');
