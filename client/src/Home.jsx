@@ -14,7 +14,7 @@ export default function Home() {
     const url = 'https://social-backend-dft5.onrender.com/posts/create';
     async function getPost() {
         try {
-            const response = await fetch('https://social-media-khaki.vercel.app/posts')
+            const response = await fetch('https://social-backend-dft5.onrender.com/posts')
             const data = await response.json();
             if (data) {
                 setPost(data);
