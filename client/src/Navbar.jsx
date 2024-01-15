@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { DataContext } from './App';
 import Button from 'react-bootstrap/Button'
+import Logo from './assets/Main-logo.jpg'
 export default function Navbar() {
     const { account, setAccount } = useContext(DataContext);
 
@@ -9,7 +10,7 @@ export default function Navbar() {
         sessionStorage.removeItem('username');
     }
     return (<nav className = 'navbar'>
-		<h2 className='navbar-header'>Social Media Clone</h2>
+		<h2 className='navbar-header'><img src={Logo}/></h2>
 		{(!account)?<ul className='links'>
 			<li><Link to='/Login' style={{textDecoration:'none'}}>Login</Link></li>
 			<li><Link to='/' style={{textDecoration:'none'}}>Signup</Link></li>

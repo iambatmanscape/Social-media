@@ -1,12 +1,15 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom'
-import prof from './assets/img_avatar2.jpg'
+import SI from './assets/signup-image.png'
+import { FaRegEye,FaRegEyeSlash } from "react-icons/fa6";
 import { DataContext } from './App'
+
 export default function Login() {
     const [statusText, setStatusText] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const { account, setAccount } = useContext(DataContext);
+    const [showPassword,setShowPassword] = useState(false)
     const navigate = useNavigate()
     async function onLogin() {
         const url = 'https://social-backend-dft5.onrender.com/login';
@@ -44,16 +47,23 @@ export default function Login() {
 
     }
 
-    return ( < >
+    return ( <div className='form-container'>
+        <div className='img-holder'>
+             <img src={SI}/>
+         </div>
         <form className='form'>
-          <div className='image-container'>
-            <img src={prof} className='prof-img'/>
-          </div>
+        <h2 className='form-header'>Login</h2>
           <input className="auth-input"type="text" placeholder="Username" onChange={({target})=>setUsername(target.value)}/>
-          <input className="auth-input"type="password" placeholder="password"  onChange={({target})=>setPassword(target.value)}/>
+          <div className='input-panel'>
+          <input className="auth-input"type={(showPassword)?'text':'password'} placeholder="Password" onChange={({target})=>setPassword(target.value)}/>
+          {(showPassword)?
+          <FaRegEye className='eyecon' onClick={()=>setShowPassword(prev=>prev=!prev)}/>:
+          <FaRegEyeSlash className='eyecon' onClick={()=>setShowPassword(prev=>prev=!prev)}/>
+          }
+          </div>
           <Link className='text-center' to='/change-password'>Forgot Password</Link>
           <span className='stattext'>{statusText}</span>
           <button className='btn btn-primary' onClick={onLogin} type='button'>Log in</button>
         </form> <
-        />)
+        /div>)
     }
