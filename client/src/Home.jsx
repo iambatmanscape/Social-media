@@ -4,11 +4,18 @@ import { useNavigate } from 'react-router-dom';
 import { DataContext } from './App'
 import Post from './Post';
 import CreatePost from './CreatePost';
+
 import Container from 'react-bootstrap/Container'
+import Button from 'react-bootstrap/Button'
+import { CiCirclePlus } from "react-icons/ci";
+
 
 
 export default function Home() {
     const { account, setAccount } = useContext(DataContext);
+    const [postModalShow,setPostModalShow] = useState(false);
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
     const navigate = useNavigate()
     const [posts, setPost] = useState(null);
     const url = 'https://social-backend-dft5.onrender.com/posts/create';
@@ -44,8 +51,6 @@ export default function Home() {
     function removePost(id) {
         setPost(posts.filter((post) => post.id !== id))
     }
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
     useEffect(() => {
         setAccount(sessionStorage.getItem('username'))
         getPost();
@@ -84,16 +89,21 @@ export default function Home() {
 
             const responseData = await response.json();
             setPost([...posts, obj])
+            setPostModalShow(false)
             console.log('Posted successfully');
 
         } catch (err) {
             console.log(err)
         }
     }
+    
 
     return (<section className='home-page'>
         <Container>
-         <CreatePost ftitle={setTitle} fcontent={setContent} save={savepost}/> 
+          <nav className='post-navigation'>
+            <Button variant='success' onClick={()=>setPostModalShow(true)}>Create Post <CiCirclePlus style={{fontSize:'22px'}}/></Button>
+          </nav> 
+          <CreatePost ftitle={setTitle} fcontent={setContent} save={savepost} show={postModalShow} onHide={()=>setPostModalShow(false)}/>
            
 { posts &&
     posts.map((post)=> <Post id={post.id} key={post.id} title={post.title} author={post.author} content={post.content} lno={post.likes} cno={post.comments.length} remove={removePost} updateLikes={updateLikes} comments={post.comments} updateComments={updateComments}/ >)

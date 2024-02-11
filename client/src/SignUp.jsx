@@ -61,9 +61,9 @@ export default function SignUp() {
         <form className='form'>
           <h2 className='form-header'>Sign up</h2>
           <input className="auth-input"type="text" placeholder="Username" onChange={({target})=>setName(target.value)} required/>
-          <input className="auth-input"type="email" placeholder="Email" required onChange={({target})=>setMail(target.value)} required/>
+          <input className="auth-input"type="email" placeholder="Email" onChange={({target})=>setMail(target.value)} required/>
           <div className='input-panel'>
-          <input className="auth-input"type={(showPassword)?'text':'password'} placeholder="Password" required onChange={({target})=>setPass(target.value)} required/>
+          <input className="auth-input"type={(showPassword)?'text':'password'} placeholder="Password" onChange={({target})=>setPass(target.value)} required/>
           {(showPassword)?
           <FaRegEye className='eyecon' onClick={()=>setShowPassword(prev=>prev=!prev)}/>:
           <FaRegEyeSlash className='eyecon' onClick={()=>setShowPassword(prev=>prev=!prev)}/>

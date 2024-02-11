@@ -25,6 +25,9 @@ ul {
     gap: 1rem;
     padding: 0rem;
 }
+
+
+
 /*Form Component start*/
 
 .form-container {
@@ -144,6 +147,7 @@ section.home-page {
 }
 
 .comment-box {
+    margin-top: 0.5rem;
     display: flex;
     flex-direction: row;
     gap: 1rem;
@@ -164,6 +168,35 @@ li.comment {
     padding: 0.5rem;
     border: 1px solid black;
     margin-top: 1rem;
+}
+
+/*Post Nav Starts*/
+nav.post-navigation {
+    display: flex;
+    justify-content: center;
+}
+.flex-around {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+/*Post Nav Ends*/
+input.title {
+    border: none;
+    padding: 0.5rem 0.5rem;
+    outline: none;
+}
+textarea.new-post {
+    border: none;
+    padding: 0.5rem 0.5rem;
+    width: 100%;
+    outline: none;
+}
+
+.lower {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 @media screen and (max-width: 800px) {

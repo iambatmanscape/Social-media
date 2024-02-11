@@ -1,6 +1,9 @@
 import React, { useState, useContext } from 'react'
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import { FaRegHeart,FaTrash } from "react-icons/fa";
+import { CgProfile } from "react-icons/cg";
+import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { DataContext } from './App'
 
 function Post({ title, author, content, lno, cno, id, remove, updateLikes, comments, updateComments }) {
@@ -78,18 +81,20 @@ function Post({ title, author, content, lno, cno, id, remove, updateLikes, comme
         }
     }
     return (
-        <Card style={{marginBottom : '1rem'}}>
+        <Card style={{marginBottom:'1rem'}}>
       <Card.Body>
+      <div className='flex-around'>
         <Card.Title>{title}</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">{author}</Card.Subtitle>
-        <Card.Text>
+        <FaTrash size='1.3rem' style={{color:'red',cursor:'pointer'}} onClick={()=>deletePost(id)}/>
+      </div>
+        <Card.Text className='text-secondary'>
           {content}
         </Card.Text>
-        <ul>
-          <li><Button variant="danger" onClick={()=>likePost(id)}>{`Like(${lno})`}</Button></li>
-          <li><Button variant="warning" onClick={()=>setShowComment(prev=>!prev)}>{`Comment(${cno})`}</Button></li>
-          <li><Button variant="success" onClick={()=>deletePost(id)}>Delete</Button></li>
-        </ul>
+        <div className='lower'>
+         <Card.Subtitle><CgProfile size='2em'/> {author}</Card.Subtitle>
+         <Card.Subtitle><IoChatbubbleEllipsesOutline size='1.5em' style={{color:'#c7c102ba',cursor:'pointer'}} onClick={()=>setShowComment(prev=>!prev)}/> {cno}</Card.Subtitle>
+         <Card.Subtitle><FaRegHeart size='1.3em' style={{color:'pink',cursor:'pointer'}} onClick={()=>likePost(id)}/> {lno}</Card.Subtitle>
+        </div>
         {showComment && (<><div className='comment-box'>
          <input className='comment-in' placeholder='Comment...' onChange={({target})=>setComment(target.value)}/> 
          <Button variant="secondary" onClick={()=>addComment(id)}>Add Comment</Button>
@@ -99,6 +104,7 @@ function Post({ title, author, content, lno, cno, id, remove, updateLikes, comme
          </ul></>)}
       </Card.Body>
     </Card>
+        
     );
 }
 

@@ -15,7 +15,7 @@ export default function Navbar() {
 			<li><Link to='/Login' style={{textDecoration:'none'}}>Login</Link></li>
 			<li><Link to='/' style={{textDecoration:'none'}}>Signup</Link></li>
 		</ul>:<ul className='links'>
-			<li>{`Hi ${account}`}</li>
+			<li><Link to='/profile' style={{textDecoration:'none'}}>Profile</Link></li>
 			<li><Link to='/Login' style={{textDecoration:'none'}} onClick={logOut}>Log Out</Link></li>
 		</ul>}
 	</nav>)
