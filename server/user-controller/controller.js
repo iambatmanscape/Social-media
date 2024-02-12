@@ -2,6 +2,7 @@ const User = require('../database/models/registration.js')
 const Post = require('../database/models/post.js')
 const jwt = require('jsonwebtoken');
 const Token = require('../database/models/token.js')
+const ImageKit = require('imagekit');
 
 require('dotenv').config();
 const signup = async (req, res) => {
@@ -115,4 +116,15 @@ const addcomment = async (req, res) => {
     }
 }
 
-module.exports = { signup, login, changepassword, createpost, getpost, deletepost, increaselike, addcomment };
+const imagekitauth = async (req,res)=>{
+    const imagekit = new ImageKit({
+      urlEndpoint: 'https://ik.imagekit.io/uwei6az6zu/',
+      publicKey: process.env.PUBLIC_KEY,
+      privateKey: process.env.PRIVATE_KEY
+});
+    var result = await imagekit.getAuthenticationParameters();
+    res.send(result);
+    
+}
+
+module.exports = { signup, login, changepassword, createpost, getpost, deletepost, increaselike, addcomment, imagekitauth };

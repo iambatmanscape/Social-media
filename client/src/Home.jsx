@@ -15,6 +15,7 @@ export default function Home() {
     const { account, setAccount } = useContext(DataContext);
     const [postModalShow,setPostModalShow] = useState(false);
     const [title, setTitle] = useState('');
+    const [postImg,setPostImg] = useState('');
     const [content, setContent] = useState('');
     const navigate = useNavigate()
     const [posts, setPost] = useState(null);
@@ -67,6 +68,7 @@ export default function Home() {
         const obj = {
             id: key,
             title: title,
+            img:postImg,
             content: content,
             author: `${account}`,
             likes: 0,
@@ -103,7 +105,7 @@ export default function Home() {
           <nav className='post-navigation'>
             <Button variant='success' onClick={()=>setPostModalShow(true)}>Create Post <CiCirclePlus style={{fontSize:'22px'}}/></Button>
           </nav> 
-          <CreatePost ftitle={setTitle} fcontent={setContent} save={savepost} show={postModalShow} onHide={()=>setPostModalShow(false)}/>
+          <CreatePost postimg={setPostImg} ftitle={setTitle} fcontent={setContent} save={savepost} show={postModalShow} onHide={()=>setPostModalShow(false)}/>
            
 { posts &&
     posts.map((post)=> <Post id={post.id} key={post.id} title={post.title} author={post.author} content={post.content} lno={post.likes} cno={post.comments.length} remove={removePost} updateLikes={updateLikes} comments={post.comments} updateComments={updateComments}/ >)

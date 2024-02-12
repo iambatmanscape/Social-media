@@ -1,7 +1,34 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal';
+
+import { IKContext, IKImage, IKUpload } from 'imagekitio-react';
 export default function CreatePost(props) {
+  const publicKey = 'public_sf2BSHg1HDw4TCb9ZrQWCIsh0+g=';
+  const urlEndpoint = 'https://ik.imagekit.io/uwei6az6zu/';
+  const authenticator =  async () => {
+    try {
+        const response = await fetch('https://social-backend-dft5.onrender.com/auth');
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Request failed with status ${response.status}: ${errorText}`);
+        }
+
+        const data = await response.json();
+        const { signature, expire, token } = data;
+        return { signature, expire, token };
+    } catch (error) {
+        throw new Error(`Authentication request failed: ${error.message}`);
+    }
+};
+const onError = err => {
+  console.log("Error", err);
+};
+
+const onSuccess = res => {
+  props.postimg(res.url)
+};
 
     return (<>
         <Modal
@@ -14,9 +41,23 @@ export default function CreatePost(props) {
         <Modal.Title id="contained-modal-title-vcenter">
           Create Post
         </Modal.Title>
+
       </Modal.Header>
       <Modal.Body>
+       <div className='flex-around'>
         <h4><input className='title' placeholder='Post Title' onChange={({target})=>props.ftitle(target.value)}/></h4>
+         <IKContext 
+        publicKey={publicKey} 
+        urlEndpoint={urlEndpoint} 
+        authenticator={authenticator} 
+      >
+        <IKUpload
+          fileName="post-img"
+          onError={onError}
+          onSuccess={onSuccess}
+        />
+      </IKContext>
+       </div>
         <p>
           <
         textarea 
@@ -32,19 +73,6 @@ export default function CreatePost(props) {
         <Button variant='danger' onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
-
-        {/*<form className='cpost-div'>
-        <input className='title' placeholder='title' onChange={({target})=>ftitle(target.value)}/> <
-        textarea cols = "10"
-        className = "new-post"
-        rows = "5"
-        placeholder = "Type...." onChange={({target})=>fcontent(target.value)}>
-        <
-        /textarea> 
-        <div className='create-post-btn'>
-            <Button variant='primary' onClick={save}>Save Post</Button>
-        </div>
-        </form>*/}
         </>)
 
 }
