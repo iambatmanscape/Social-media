@@ -6,7 +6,7 @@ import { CgProfile } from "react-icons/cg";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { DataContext } from './App'
 
-function Post({ title, author, content, lno, cno, id, remove, updateLikes, comments, updateComments }) {
+function Post({ title, img,author, content, lno, cno, id, remove, updateLikes, comments, updateComments }) {
     const [showComment, setShowComment] = useState(false)
     const [comment, setComment] = useState('')
     const [likes, setLikes] = useState(lno)
@@ -82,6 +82,7 @@ function Post({ title, author, content, lno, cno, id, remove, updateLikes, comme
     }
     return (
         <Card style={{marginBottom:'1rem'}}>
+        <Card.Img variant="top" src={img} className='post-img'/>
       <Card.Body>
       <div className='flex-around'>
         <Card.Title>{title}</Card.Title>

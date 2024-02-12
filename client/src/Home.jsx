@@ -11,6 +11,7 @@ import { CiCirclePlus } from "react-icons/ci";
 
 
 
+
 export default function Home() {
     const { account, setAccount } = useContext(DataContext);
     const [postModalShow,setPostModalShow] = useState(false);
@@ -61,6 +62,7 @@ export default function Home() {
         const user = sessionStorage.getItem('username');
         (user) ? setAccount(user): navigate('/Login')
     })
+    
 
 
     async function savepost() {
@@ -106,10 +108,12 @@ export default function Home() {
             <Button variant='success' onClick={()=>setPostModalShow(true)}>Create Post <CiCirclePlus style={{fontSize:'22px'}}/></Button>
           </nav> 
           <CreatePost postimg={setPostImg} ftitle={setTitle} fcontent={setContent} save={savepost} show={postModalShow} onHide={()=>setPostModalShow(false)}/>
-           
+    <div className='post-container'>
 { posts &&
-    posts.map((post)=> <Post id={post.id} key={post.id} title={post.title} author={post.author} content={post.content} lno={post.likes} cno={post.comments.length} remove={removePost} updateLikes={updateLikes} comments={post.comments} updateComments={updateComments}/ >)
+    posts.map((post)=><Post key={post.id} img={post.img} id={post.id} title={post.title} author={post.author} content={post.content} lno={post.likes} cno={post.comments.length} remove={removePost} updateLikes={updateLikes} comments={post.comments} updateComments={updateComments}/ >)
 }
+</div>
+ 
 
         </Container>
         

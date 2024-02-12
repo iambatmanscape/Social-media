@@ -180,6 +180,17 @@ nav.post-navigation {
     flex-direction: row;
     justify-content: space-between;
 }
+.post-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+img.card-img-top {
+    max-height: 400px;
+}
+div.card {
+    width: 80%;
+}
 /*Post Nav Ends*/
 input.title {
     border: none;
