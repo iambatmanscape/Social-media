@@ -9,7 +9,10 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import '../node_modules/bootstrap/dist/js/bootstrap.min.js'
 export const DataContext = React.createContext();
 export default function App() {
-    const [account, setAccount] = useState(null)
+    const [account, setAccount] = useState({
+        name:'',
+        id:''
+    })
 
     return ( < >
             <DataContext.Provider value={ {account,setAccount} }>

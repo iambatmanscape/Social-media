@@ -36,6 +36,7 @@ export default function Login() {
 
             const responseData = await response.json();
             sessionStorage.setItem('username', responseData.name)
+            sessionStorage.setItem('id',responseData.id)
             navigate(`/Home`)
 
 

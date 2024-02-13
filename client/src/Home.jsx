@@ -54,7 +54,10 @@ export default function Home() {
         setPost(posts.filter((post) => post.id !== id))
     }
     useEffect(() => {
-        setAccount(sessionStorage.getItem('username'))
+        setAccount({
+            name:sessionStorage.getItem('username'),
+            id:sessionStorage.getItem('id')
+        })
         getPost();
 
     }, [])

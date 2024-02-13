@@ -18,7 +18,7 @@ function Post({ title, img,author, content, lno, cno, id, remove, updateLikes, c
             headers: {
                 "Content-type": "application/json",
             },
-            body: JSON.stringify({ id:id, name:account })
+            body: JSON.stringify({ id:id, userid:account.id })
 
         }
         try {
@@ -58,7 +58,7 @@ function Post({ title, img,author, content, lno, cno, id, remove, updateLikes, c
     async function addComment(id) {
         const commObj = {
             id: id,
-            author: account,
+            author: account.name,
             text: comment,
         }
         const commentURL = 'https://social-backend-dft5.onrender.com/posts/comments';

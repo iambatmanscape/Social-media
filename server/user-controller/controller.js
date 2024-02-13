@@ -25,7 +25,7 @@ const login = async (req, res) => {
         let match = (user.password === req.body.password);
         if (match) {
 
-            return res.status(200).json({ name: user.username })
+            return res.status(200).json({ name: user.username, id: user._id })
         } else {
             res.status(400).json({ msg: "Password does not  match" })
         }
@@ -87,7 +87,7 @@ const deletepost = async (req, res) => {
 };
 const increaselike = async (req, res) => {
     const postId = req.body.id;
-    const liker = req.body.name;
+    const liker = req.body.userid;
     try {
         const post = await Post.findOne({ id: postId })
         if(!post.likedBy.includes(liker)) {

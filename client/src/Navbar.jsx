@@ -11,7 +11,7 @@ export default function Navbar() {
     }
     return (<nav className = 'navbar'>
 		<h2 className='navbar-header'><img src={Logo}/></h2>
-		{(!account)?<ul className='links'>
+		{(!account.length)?<ul className='links'>
 			<li><Link to='/Login' style={{textDecoration:'none'}}>Login</Link></li>
 			<li><Link to='/' style={{textDecoration:'none'}}>Signup</Link></li>
 		</ul>:<ul className='links'>
