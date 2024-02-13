@@ -24,7 +24,7 @@ function Post({ title, img,author, content, lno, cno, id, remove, updateLikes, c
         try {
             await fetch(likeURL, options)
             setLikes(likes + 1)
-            updateLikes(id, likes + 1)
+            //updateLikes(id, likes + 1)
 
         } catch (err) {
             console.log(err.message)
@@ -94,7 +94,7 @@ function Post({ title, img,author, content, lno, cno, id, remove, updateLikes, c
         <div className='lower'>
          <Card.Subtitle><CgProfile size='2em'/> {author}</Card.Subtitle>
          <Card.Subtitle><IoChatbubbleEllipsesOutline size='1.5em' style={{color:'#c7c102ba',cursor:'pointer'}} onClick={()=>setShowComment(prev=>!prev)}/> {cno}</Card.Subtitle>
-         <Card.Subtitle><FaRegHeart size='1.3em' style={{color:'pink',cursor:'pointer'}} onClick={()=>likePost(id)}/> {lno}</Card.Subtitle>
+         <Card.Subtitle><FaRegHeart size='1.3em' style={{color:'pink',cursor:'pointer'}} onClick={()=>likePost(id)}/> {likes}</Card.Subtitle>
         </div>
         {showComment && (<><div className='comment-box'>
          <input className='comment-in' placeholder='Comment...' onChange={({target})=>setComment(target.value)}/> 

@@ -96,7 +96,7 @@ const increaselike = async (req, res) => {
             await post.save()
             return res.status(200).json({ msg: "Liked" })
         } else {
-            return res.status(201).json({msg: "Already liked"})
+            return res.status(500).json({msg: "Already liked"})
         }
         
     } catch (err) {
