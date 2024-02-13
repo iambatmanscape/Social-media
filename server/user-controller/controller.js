@@ -87,11 +87,18 @@ const deletepost = async (req, res) => {
 };
 const increaselike = async (req, res) => {
     const postId = req.body.id;
+    const liker = req.body.name;
     try {
         const post = await Post.findOne({ id: postId })
-        post.likes += 1;
-        await post.save()
-        return res.status(200).json({ msg: "Liked" })
+        if(!post.likedBy.includes(liker)) {
+            post.likes += 1;
+            post.likedBy.push(liker)
+            await post.save()
+            return res.status(200).json({ msg: "Liked" })
+        } else {
+            return res.status(201).json({msg: "Already liked"})
+        }
+        
     } catch (err) {
         return res.status(500).json({ msg: 'Post not found' })
     }

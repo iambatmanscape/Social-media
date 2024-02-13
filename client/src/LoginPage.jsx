@@ -49,7 +49,7 @@ export default function Login() {
 
     return ( <div className='form-container'>
         <div className='img-holder'>
-             <img src={SI}/>
+             <img src={SI} className='form-img'/>
          </div>
         <form className='form'>
         <h2 className='form-header'>Login</h2>

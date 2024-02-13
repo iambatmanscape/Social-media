@@ -74,6 +74,7 @@ export default function Home() {
             content: content,
             author: `${account}`,
             likes: 0,
+            likedBy:[],
             comments: []
         }
         const options = {
@@ -105,7 +106,7 @@ export default function Home() {
     return (<section className='home-page'>
         <Container>
           <nav className='post-navigation'>
-            <Button variant='success' onClick={()=>setPostModalShow(true)}>Create Post <CiCirclePlus style={{fontSize:'22px'}}/></Button>
+            <Button size='md' style={{width:'300px'}} variant='success' onClick={()=>setPostModalShow(true)}>Create Post <CiCirclePlus style={{fontSize:'22px'}}/></Button>
           </nav> 
           <CreatePost postimg={setPostImg} ftitle={setTitle} fcontent={setContent} save={savepost} show={postModalShow} onHide={()=>setPostModalShow(false)}/>
     <div className='post-container'>

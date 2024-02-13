@@ -18,7 +18,7 @@ function Post({ title, img,author, content, lno, cno, id, remove, updateLikes, c
             headers: {
                 "Content-type": "application/json",
             },
-            body: JSON.stringify({ id })
+            body: JSON.stringify({ id:id, name:account })
 
         }
         try {
@@ -27,7 +27,7 @@ function Post({ title, img,author, content, lno, cno, id, remove, updateLikes, c
             updateLikes(id, likes + 1)
 
         } catch (err) {
-            alert(err.message)
+            console.log(err.message)
 
         }
 
@@ -98,7 +98,7 @@ function Post({ title, img,author, content, lno, cno, id, remove, updateLikes, c
         </div>
         {showComment && (<><div className='comment-box'>
          <input className='comment-in' placeholder='Comment...' onChange={({target})=>setComment(target.value)}/> 
-         <Button variant="secondary" onClick={()=>addComment(id)}>Add Comment</Button>
+         <Button className='comment-button' size='md' variant="secondary" onClick={()=>addComment(id)}>Add Comment</Button>
          </div>
          <ul className='comment-list'>
          {comments && comments.map((comment,index)=><li className='comment' key={index+1}><span className='comment-author'>{`${comment.author} : `}</span><span className='comment-author'>{comment.text}</span></li>)}
