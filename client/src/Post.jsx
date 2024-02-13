@@ -22,9 +22,10 @@ function Post({ title, img,author, content, lno, cno, id, remove, updateLikes, c
 
         }
         try {
-            await fetch(likeURL, options)
-            setLikes(likes + 1)
-            //updateLikes(id, likes + 1)
+            const response = await fetch(likeURL, options)
+            if(response.status !== 500) {
+                setLikes(likes + 1)
+            }
 
         } catch (err) {
             console.log(err.message)
