@@ -63,8 +63,12 @@ export default function Home() {
     }, [])
     useEffect(() => {
         const user = sessionStorage.getItem('username');
-        (user) ? setAccount(user): navigate('/Login')
-    })
+        const userid = sessionStorage.getItem('id');
+        (user) ? setAccount({
+            name:user,
+            id:userid
+        }): navigate('/Login')
+    },[])
     
 
 
@@ -75,7 +79,7 @@ export default function Home() {
             title: title,
             img:postImg,
             content: content,
-            author: `${account}`,
+            author: `${account.name}`,
             likes: 0,
             likedBy:[],
             comments: []

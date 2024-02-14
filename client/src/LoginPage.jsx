@@ -8,7 +8,7 @@ export default function Login() {
     const [statusText, setStatusText] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const { account, setAccount } = useContext(DataContext);
+    const { account, setAccount,isLoggedIn,setIsLoggedIn } = useContext(DataContext);
     const [showPassword,setShowPassword] = useState(false)
     const navigate = useNavigate()
     async function onLogin() {
@@ -37,6 +37,8 @@ export default function Login() {
             const responseData = await response.json();
             sessionStorage.setItem('username', responseData.name)
             sessionStorage.setItem('id',responseData.id)
+            setIsLoggedIn(true)
+            sessionStorage.setItem('isloggedin',true)
             navigate(`/Home`)
 
 

@@ -58,6 +58,19 @@ const getpost = async (req, res) => {
     }
 
 }
+
+const userinfo = async (req,res) => {
+    try {
+        const user = await User.findOne({_id: req.body.userid})
+        return res.status(200).json(user)
+        
+    } catch(e) {
+        
+        return res.status(500).json({msg:'User not found!'})
+    }
+}
+
+
 const changepassword = async (req, res) => {
     try {
         let user = await User.findOne({ username: req.body.username });
@@ -82,7 +95,7 @@ const deletepost = async (req, res) => {
         }
     } catch (e) {
         console.error(e.message);
-        return res.status(500).json({ msg: "Internal Server Error" });
+        return res.status(400).json({ msg: "Internal Server Error" });
     }
 };
 const increaselike = async (req, res) => {
@@ -134,4 +147,4 @@ const imagekitauth = async (req,res)=>{
     
 }
 
-module.exports = { signup, login, changepassword, createpost, getpost, deletepost, increaselike, addcomment, imagekitauth };
+module.exports = { signup, login, changepassword, createpost, getpost, deletepost, increaselike, addcomment, imagekitauth, userinfo };

@@ -5,6 +5,7 @@ import Login from './LoginPage';
 import SignUp from './SignUp';
 import Home from './Home';
 import PasswordChange from './PasswordChange';
+import UserDetail from './UserDetail';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import '../node_modules/bootstrap/dist/js/bootstrap.min.js'
 export const DataContext = React.createContext();
@@ -13,9 +14,10 @@ export default function App() {
         name:'',
         id:''
     })
+    const [isLoggedIn,setIsLoggedIn] = useState(false)
 
     return ( < >
-            <DataContext.Provider value={ {account,setAccount} }>
+            <DataContext.Provider value={ {account,setAccount,isLoggedIn,setIsLoggedIn} }>
         <Navbar/> <
         Routes >
         <
@@ -31,6 +33,7 @@ export default function App() {
         Route path = '/Home'
         element = { <Home/> }
         />
+        <Route path = '/profile/:id' element={<UserDetail/>} />
          < /
         Routes >
         <
