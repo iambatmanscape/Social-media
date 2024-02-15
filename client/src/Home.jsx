@@ -79,7 +79,7 @@ export default function Home() {
             title: title,
             img:postImg,
             content: content,
-            author: `${account.name}`,
+            author: sessionStorage.getItem('id'),
             likes: 0,
             likedBy:[],
             comments: []
@@ -118,7 +118,7 @@ export default function Home() {
           <CreatePost postimg={setPostImg} ftitle={setTitle} fcontent={setContent} save={savepost} show={postModalShow} onHide={()=>setPostModalShow(false)}/>
     <div className='post-container'>
 { posts &&
-    posts.map((post)=><Post key={post.id} img={post.img} id={post.id} title={post.title} author={post.author} content={post.content} lno={post.likes} cno={post.comments.length} remove={removePost} updateLikes={updateLikes} comments={post.comments} updateComments={updateComments}/ >)
+    posts.map((post)=><Post key={post.id} img={post.img} id={post.id} title={post.title} authorid={post.author} content={post.content} lno={post.likes} cno={post.comments.length} remove={removePost} updateLikes={updateLikes} comments={post.comments} updateComments={updateComments}/ >)
 }
 </div>
  

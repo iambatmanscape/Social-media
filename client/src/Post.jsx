@@ -6,11 +6,39 @@ import { CgProfile } from "react-icons/cg";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { DataContext } from './App'
 
-function Post({ title, img,author, content, lno, cno, id, remove, updateLikes, comments, updateComments }) {
+function Post({ title, img, authorid, content, lno, cno, id, remove, updateLikes, comments, updateComments }) {
     const [showComment, setShowComment] = useState(false)
     const [comment, setComment] = useState('')
     const [likes, setLikes] = useState(lno)
+    const [Op,setOp] = useState('')
     const { account } = useContext(DataContext);
+    
+    async function getinfo(userid) {
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({userid})
+        }
+        try {
+            const info = await fetch('https://social-backend-dft5.onrender.com/user',options)
+            const response = await info.json();
+            if(response) {
+                const postername = response.username
+                setOp(postername);
+            } 
+        } catch(e) {
+                console.log(e)
+            }
+    }
+    useEffect(()=>{
+
+        getinfo(authorid);
+   },[id])
+
+
+
     async function likePost(id) {
         const likeURL = 'https://social-backend-dft5.onrender.com/posts/like';
         const options = {
@@ -87,13 +115,15 @@ function Post({ title, img,author, content, lno, cno, id, remove, updateLikes, c
       <Card.Body>
       <div className='flex-around'>
         <Card.Title>{title}</Card.Title>
-        <FaTrash size='1.3rem' style={{color:'red',cursor:'pointer'}} onClick={()=>deletePost(id)}/>
+        {(authorid === account.id) && <FaTrash size='1.3rem' style={{color:'red',cursor:'pointer'}} onClick={()=>deletePost(id)}/>} 
+        
+
       </div>
         <Card.Text className='text-secondary'>
           {content}
         </Card.Text>
         <div className='lower'>
-         <Card.Subtitle><CgProfile size='2em'/> {author}</Card.Subtitle>
+         <Card.Subtitle><CgProfile size='2em'/> {Op}</Card.Subtitle>
          <Card.Subtitle><IoChatbubbleEllipsesOutline size='1.5em' style={{color:'#c7c102ba',cursor:'pointer'}} onClick={()=>setShowComment(prev=>!prev)}/> {cno}</Card.Subtitle>
          <Card.Subtitle><FaRegHeart size='1.3em' style={{color:'pink',cursor:'pointer'}} onClick={()=>likePost(id)}/> {likes}</Card.Subtitle>
         </div>

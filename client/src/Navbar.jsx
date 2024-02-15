@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button'
 import Logo from './assets/Main-logo.jpg'
 export default function Navbar() {
     const { account, setAccount,isLoggedIn,setIsLoggedIn } = useContext(DataContext);
-    const [username,setUsername] = useState('')
+    const [userInfo,setUserInfo] = useState({})
 
     function logOut() {
     	setIsLoggedIn(false)
@@ -18,12 +18,14 @@ export default function Navbar() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({userid:userid})
+            body: JSON.stringify({userid})
     	}
     	try {
-    		const info = await fetch('https://4794-123-136-252-137.ngrok-free.app/user',options)
-    		if(info) {
-    			return info;
+    		const info = await fetch('https://social-backend-dft5.onrender.com/user',options)
+    		const response = await info.json();
+    		if(response) {
+    			
+    			setUserInfo(response);
     		} 
     	} catch(e) {
     			console.log(e)
@@ -32,13 +34,15 @@ export default function Navbar() {
 
 
    useEffect(()=>{
-   	 const data = getinfo(account.id);
-   	 setUsername(data.username)
+   	 
      setIsLoggedIn(()=>JSON.parse(sessionStorage.getItem('isloggedin')) || false)
-
+     if(isLoggedIn) {
+     	getinfo(account.id);
+     }
 
    },[account])
 
+   
     return (<nav className = 'navbar'>
 		<h2 className='navbar-header'><img src={Logo}/></h2>
 		{(!isLoggedIn)?<ul className='links'>
@@ -46,7 +50,7 @@ export default function Navbar() {
 			<li><Link to='/' style={{textDecoration:'none'}}>Signup</Link></li>
 		</ul>:<ul className='links'>
 		    <li><Link to='/home' style={{textDecoration:'none'}}>Home</Link></li>
-			<li><Link to='/profile' style={{textDecoration:'none'}}>{username}</Link></li>
+			<li><Link to='/profile' style={{textDecoration:'none'}}>{userInfo.username}</Link></li>
 			<li><Link to='/Login' style={{textDecoration:'none'}} onClick={logOut}>Log Out</Link></li>
 		</ul>}
 	</nav>)
